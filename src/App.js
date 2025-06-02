@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,6 +13,14 @@ function App() {
     setCount(previousCount => previousCount + 1)
     setTheme('red')
   }
+
+  useEffect(() => {
+    console.log('count:', count, 'theme:', theme)
+
+    return () => {
+      console.log('cleanup')
+    }
+  }, [count, theme])
   return (
     <>
       <button onClick={decrement}>-</button>
