@@ -1,34 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
+import FunctionComponent from './FunctionComponent';
+import ClassComponentContext from './ClassContextComponent';
+import React from 'react';
+import { ThemeProvider } from './ThemeContext';
 
-function App() {
-  const [count, setCount] = useState(0)
-  const [theme, setTheme] = useState('blue')
 
-  const decrement = () => {
-    setCount(previousCount => previousCount - 1)
-  }
-  const increment = () => {
-    setCount(previousCount => previousCount + 1)
-    setTheme('red')
-  }
+export const ThemeContext = React.createContext()
 
-  useEffect(() => {
-    console.log('count:', count, 'theme:', theme)
+const App = () => {
 
-    return () => {
-      console.log('cleanup')
-    }
-  }, [count, theme])
+
+
+
   return (
     <>
-      <button onClick={decrement}>-</button>
-      <span>{count}</span>
-      <span>{theme}</span>
-      <button onClick={increment}>+</button>
-    </>
-  );
-}
+      <ThemeProvider>
+        <FunctionComponent />
+      </ThemeProvider>
 
+    </>
+  )
+}
 export default App;
